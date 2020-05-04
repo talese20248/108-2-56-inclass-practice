@@ -42,7 +42,7 @@ as.integer(majors10_factor)
 levels(majors10_factor)
 ```
 
-
+#第一個練習
 ```{r}
 example <- list(
   name=c("小明","小花","小新","美美"),
@@ -79,7 +79,9 @@ pick_allowanceOver1000 <- example$allowance >= "1001-2000"
 example$name[pick_allowanceOver1000]
 ```
 
-
+```{r}
+lib
+```
 
 
 

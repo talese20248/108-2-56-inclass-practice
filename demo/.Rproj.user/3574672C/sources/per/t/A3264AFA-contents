@@ -79,7 +79,9 @@ pick_allowanceOver1000 <- example$allowance >= "1001-2000"
 example$name[pick_allowanceOver1000]
 ```
 
-#第二個刑事案件的練習
+```{r}
+lib
+```
 
 
 
