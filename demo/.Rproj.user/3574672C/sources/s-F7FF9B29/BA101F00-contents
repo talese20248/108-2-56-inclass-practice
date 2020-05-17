@@ -27,6 +27,17 @@ library(glue)
 
 
 ```{r}
+studentIds <- c("410873029","410773005","410772035","410562123")
+# 取出學號中的入學屆為107或108
+str_view_all(studentIds,"(107|108)")
+
+str_view_all(studentIds, "107|108") # 可不寫()
+
+# 是否來自107或108學屆
+str_detect(studentIds, "107|108")
+```
+
+```{r}
 c(
   "https://github.com/student1/108-2-78-inclass-practice", 
   "github.com/student2 / 108-2-56-inclass-practice", 
