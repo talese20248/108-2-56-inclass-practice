@@ -15,12 +15,17 @@ Sys.getlocale("LC_COLLATE")
 
 ```{r}
 jsonlite::fromJSON("https://od.cdc.gov.tw/eic/Day_Confirmation_Age_County_Gender_19CoV.json") -> covid19
+
 ```
 
 
 
 ```{r}
-
+jsonlite::fromJSON(
+  "https://www.dropbox.com/s/jckqryeh5zeat5w/regionPopulation.json?dl=1"
+) -> population
+unlist(population) -> population
+population
 ```
 
 
