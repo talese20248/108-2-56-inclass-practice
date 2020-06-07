@@ -1,0 +1,33 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1591538190239.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "87A357B8",
+    "lastKnownWriteTime" : 1591538162,
+    "last_content_update" : 1591538190239,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "DC192521",
+        "caption" : "busRoutes",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=busRoutes&cache_key=DC192521",
+        "displayedObservations" : "30",
+        "environment" : "",
+        "expression" : "busRoutes",
+        "object" : "busRoutes",
+        "preview" : "0",
+        "totalObservations" : "30",
+        "variables" : "35"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

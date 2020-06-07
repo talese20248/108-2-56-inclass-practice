@@ -1,0 +1,117 @@
+---
+title: "0603classpractice"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+
+
+
+
+
+```{r}
+supply <- function(p){
+  q_s <- 0+2*p
+  return(q_s)
+}
+```
+
+```{r}
+supply(5)
+```
+
+```{r}
+library(lubridate)
+```
+
+
+```{r}
+what_time_it_is <- function(now_time){
+  parisnow <- with_tz(now_time,tzone="Europe/Paris")
+  return(parisnow)
+}
+
+what_time_it_is(now())
+```
+
+
+```{r}
+now()
+```
+
+```{r}
+jsonlite::fromJSON("https://data.ntpc.gov.tw/api/datasets/07F7CCB3-ED00-43C4-966D-08E9DAB24E95/json/preview") -> busArrivalForecast # 公車預估到站時間 https://data.ntpc.gov.tw/datasets/07F7CCB3-ED00-43C4-966D-08E9DAB24E95
+
+jsonlite::fromJSON("https://data.ntpc.gov.tw/api/datasets/0EE4E6BF-CEE6-4EC8-8FE1-71F544015127/json/preview") -> busRoutes # 公車路線清單 https://data.ntpc.gov.tw/datasets/0EE4E6BF-CEE6-4EC8-8FE1-71F544015127
+
+jsonlite::fromJSON("https://data.ntpc.gov.tw/api/datasets/34B402A8-53D9-483D-9406-24A682C2D6DC/json/preview") -> busStopsInfo # 公車站位資訊 https://data.ntpc.gov.tw/datasets/34B402A8-53D9-483D-9406-24A682C2D6DC
+```
+
+```{r}
+when_busArrives <- function(busnumber,where){
+  busRoutes$nameEn =="busnamber" -> pickname
+  busRoutes$Id[pickname] -> routesidp
+  
+  busStopsInfo$nameZh == "where" -> pickwhere
+  busStopsInfo$Id[pickwhere] -> stopidp
+  
+  infopick <- 
+    busArrivalForecast$RouteID =="routesidp" &
+    busArrivalForecast$StopID == "stopidp"
+  
+  when <- busArrivalForecast$EstimateTime[infopick]
+  return(when)
+}
+
+```
+
+
+```{r}
+when_busArrives("916","臺北大學正門")
+```
+
+
+```{r}
+busRoutes$nameEn =="busnamber" -> pickname
+  busRoutes$Id[pickname] -> routesidp
+  
+  busStopsInfo$nameZh == "where" -> pickwhere
+  busStopsInfo$Id[pickwhere] -> stopid
+  
+  infopick <- 
+    busArrivalForecast$RouteID =="routesidp" &
+    busArrivalForecast$StopID == "stopidp"
+```
+
+```{r}
+ok <- list(first=c(1,2,2,1),
+           second=c(3,4,5,5)
+           )
+okpick <- ok$first == 2 & ok$second == 4
+```
+
+
+
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

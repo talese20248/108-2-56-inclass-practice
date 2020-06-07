@@ -1,0 +1,4 @@
+"0","ok <- list(first=c(1,2,2,1),"
+"0","           second=c(3,4,5,5)"
+"0","           )"
+"0","okpick <- ok$first == 2 & ok$second == 4"
