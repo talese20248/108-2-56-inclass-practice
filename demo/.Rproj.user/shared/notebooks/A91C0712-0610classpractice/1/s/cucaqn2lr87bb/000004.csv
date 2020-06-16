@@ -1,0 +1,59 @@
+"0","# æ¸¬è©¦"
+"0","check_package(""clipr"")"
+"2","Loading required package: pkgName
+"
+"2","there is no package called ¡¥pkgName¡¦"
+"2","WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+"
+"2","Installing package into ¡¥C:/Users/Windows/Documents/R/win-library/3.6¡¦
+(as ¡¥lib¡¦ is unspecified)
+"
+"2","å˜—è©¦ URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/clipr_0.7.0.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 52069 bytes (50 KB)
+"
+"2","downloaded 50 KB
+
+"
+"1","package â€˜cliprâ€™ successfully unpacked and MD5 sums checked
+"
+"1","
+"
+"1",""
+"1","The downloaded binary packages are in
+	C:\Users\Windows\AppData\Local\Temp\RtmpGgIqAD\downloaded_packages"
+"1",""
+"1","
+"
+"0","check_package(""SOAR"")"
+"2","Loading required package: pkgName
+"
+"2","there is no package called ¡¥pkgName¡¦"
+"2","WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+"
+"2","Installing package into ¡¥C:/Users/Windows/Documents/R/win-library/3.6¡¦
+(as ¡¥lib¡¦ is unspecified)
+"
+"2","å˜—è©¦ URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/SOAR_0.99-11.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 318518 bytes (311 KB)
+"
+"2","downloaded 311 KB
+
+"
+"1","package â€˜SOARâ€™ successfully unpacked and MD5 sums checked
+"
+"1","
+"
+"1",""
+"1","The downloaded binary packages are in
+	C:\Users\Windows\AppData\Local\Temp\RtmpGgIqAD\downloaded_packages"
+"1",""
+"1","
+"

@@ -1,0 +1,28 @@
+---
+title: "0610classpractice"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+check_package <-
+  function(pkgName){
+    if(!require(pkgName)){install.packages(pkgName)}
+  }
+
+```
+
+```{r}
+# 測試
+check_package("clipr")
+check_package("SOAR")
+```
+
+```{r}
+!require("clipr")
+```
+

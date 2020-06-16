@@ -1,0 +1,6 @@
+"0","check_package <-"
+"0","  function(pkgName){"
+"0","    !require(pkgName) -> tf"
+"0","    if(tf){install.packages(pkgName)}"
+"0","  }"
+"0",""

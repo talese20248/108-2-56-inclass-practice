@@ -96,6 +96,20 @@ busRoutes$nameEn =="busnamber" -> pickname
     busArrivalForecast$StopID == "stopidp"
 ```
 
+
+
+```{r}
+library(httr)
+library(magrittr)
+GET("https://ptx.transportdata.tw/MOTC/v2/Bus/EstimatedTimeOfArrival/City/NewTaipei/916?$top=30&$format=JSON") %>%
+  content -> estimatedArrivalTime_916
+
+GET("https://ptx.transportdata.tw/MOTC/v2/Bus/Route/City/NewTaipei/939?$top=30&$format=JSON") %>%
+  content -> route_916
+```
+
+
+
 ```{r}
 ok <- list(first=c(1,2,2,1),
            second=c(3,4,5,5)
