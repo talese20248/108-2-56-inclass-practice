@@ -1,5 +1,5 @@
 ---
-title: "0617classpractice"
+title: "0624classpractice"
 output: html_document
 ---
 
@@ -12,6 +12,61 @@ knitr::opts_chunk$set(echo = TRUE)
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+
+
+
+
+
+```{r}
+sum <- 0
+count <- 0 # 計數器
+while(sum<5){
+  count <- count+1 # 計數器+1
+  newToss <- sample(c("正","反"), 1, replace=T)
+  if(newToss == "正"){
+    sum <- sum+1
+  }
+  print(glue::glue("已擲{count}次得到{sum}次正面"))
+}
+```
+
+```{r}
+sum <- 0
+count <- 0 # 計數器
+for(i in 1:100){
+  count <- count+1 # 計數器+1
+  newToss <- sample(c("正","反"), 1, replace=T)
+  if(newToss == "正"){
+    sum <- sum+1
+  }
+  print(glue::glue("已擲{i}次得到{sum}次正面"))
+  
+  if(sum==5){
+    break
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ```{r cars}
 summary(cars)

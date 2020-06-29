@@ -1,0 +1,10 @@
+"0","list_econCourseCounts <-list("
+"0","entranceYear=100:103,"
+"0","year1= map(get_coursesAllYears(entranceYear,""經濟系""),~.x[[1]]),"
+"0","year2= map(get_coursesAllYears(entranceYear,""經濟系""),~.x[[2]]),"
+"0","year3= map(get_coursesAllYears(entranceYear,""經濟系""),~.x[[3]]),"
+"0","year4= map(get_coursesAllYears(entranceYear,""經濟系""),~.x[[4]])"
+"0",""
+"0",")"
+"2","Error in eval(lhs, parent, parent) : 找不到物件 'entranceYear'
+"

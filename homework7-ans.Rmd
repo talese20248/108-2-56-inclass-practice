@@ -2,8 +2,8 @@
 title: "homework 7"
 output: html_document
 params:
-  studentName: "李杰庭"
-  studentID: "410773071"
+  studentName: "你的名字"
+  studentID: "你的學號"
 ---
 
 # 注意事項
@@ -33,18 +33,20 @@ library(readr); library(stringr); library(purrr); library(magrittr); library(lub
 ### 1.1 單一立方體表面積
 立方體的表面積計算方式為六個面的面積加總，請計算長寬高分別為20,10,15的立方體A的表面積，並將結果存到surface_A(class integer)。
 ```{r ans11}
-as.integer(20*10*2+20*15*2+10*15*2) ->surface_A
- surface_A
+(20*10+20*15+10*15)*2 -> surface_A
+
+# surface_A
 ```
 
 ### 1.2 立方體表面積計算機
 請寫一個叫做surface_cube的function，它的功能是在你輸入長寬高後能自動回傳表面積的值，比如輸入surface_cube(20,10,15)，執行結果應該出現和你1.1計算出來一樣值。
 ```{r ans12}
-surface_cube <- function(a,b,c){
-  abc <- a*b*2+a*c*2+b*c*2
-  return(abc)
+surface_cube <- function(x,y,z){
+  (x*y+x*z+y*z)*2 %>%
+    return()
 }
- surface_cube
+
+# surface_cube
 ```
 
 ## 2 口罩實名制
@@ -57,9 +59,11 @@ read_csv("https://www.dropbox.com/s/9xzccsvwrnctzul/mask.csv?dl=1") -> Mask
 請取出Mask裡的第一個身分證字號並用程式判斷他的單雙號，將結果儲存在1st_odd_or_even(class integer,length = 1)。
 單號請用1表示、雙號則用0表示。
 ```{r ans21}
-str_extract(Mask[[1]][[1]],"[0-9]$") ->a21
-as.integer(a21) %% 2 -> `1st_odd_or_even`
- `1st_odd_or_even`
+Mask$身分證字號[[1]] %>%
+  str_sub(-1) %>%
+  as.integer() %% 2 -> `1st_odd_or_even`
+
+# `1st_odd_or_even`
 ```
 
 ### 2.2 身分證末碼判斷function
@@ -67,12 +71,13 @@ as.integer(a21) %% 2 -> `1st_odd_or_even`
 odd_or_even(Mask$身分證字號[[1]])，執行結果應該出現和你2.1計算出來的一樣。
 ```{r ans22}
 odd_or_even <- function(id){
-  a22 <- str_extract(id,"[0-9]$")
-  as.integer(a22) %% 2 -> aa22
-  return(aa22)
+  id[[1]] %>%
+    str_sub(-1) %>%
+    as.integer() %% 2 %>%
+    return()
 }
 
- odd_or_even
+# odd_or_even
 ```
 
 ### 2.3 口罩實名制1.0—購買口罩日期
@@ -87,7 +92,7 @@ data.frame(
 在口罩實名制1.0中，規定「身分證字號末碼雙號者（0、2、4、6、8）可於每週二、四、六購買；單號者（1、3、5、7、9）可於每週一、三、五購買；週日則開放全民皆可購買(摘自wiki)」，試判斷Mask裡的第一個身分證字號在實名制1.0之下，下一次可購買口罩的日期(含本日)，並將結果存在1st_next_date(class Date)。
 
 提示：
-```
+```{r}
 chart <- list(
   `雙` = c(1,3,5,7),
   `單` = c(1,2,4,6)
@@ -96,7 +101,12 @@ chart[[odd_or_even(Mask$身分證字號[[1]])+1]]
 ```
 這題非常有挑戰性喔!
 ```{r ans23}
-# 1st_next_date
+as.numeric(
+  !(wday(today()) %in%
+      (chart[[odd_or_even(Mask$身分證字號[[1]])+1]]))
+) + today() -> `1st_next_date`
+
+# `1st_next_date`
 ```
 
 ### 2.4 口罩實名制1.0—口罩購買日期查詢機
@@ -105,6 +115,14 @@ chart[[odd_or_even(Mask$身分證字號[[1]])+1]]
 
 也可以輸入自己或家人朋友的身分證字號玩看看，如果都沒問題的話你就已經能寫出一個時下流行的口罩小app了呢!
 ```{r ans24}
+next_date <- function(id){
+  as.numeric(
+    !(wday(today()) %in%
+        (chart[[odd_or_even(id)+1]]))
+  ) + today() -> date
+  date %>% format("%Y-%m-%d,%A")
+}
+next_date(Mask$身分證字號[[1]])
 # next_date
 ```
 
@@ -141,30 +159,34 @@ list(
 
 
 ```{r ans31}
-get_courses <-function(entranceYear,major){
-  pickyear1 <- courseStructure$`學年`== as.integer(entranceYear)
-  pickyear2 <- courseStructure$`學年`== as.integer(entranceYear)+1
-  pickyear3 <- courseStructure$`學年`== as.integer(entranceYear)+2
-  pickyear4 <- courseStructure$`學年`== as.integer(entranceYear)+3
+get_courses <- function(entranceYear,major){
+  entranceYear <- as.character(entranceYear)
   
-  pickmajor1 <- str_detect(courseStructure$`應修系級` , paste0(major,"1"))
-  pickmajor2 <- str_detect(courseStructure$`應修系級` , paste0(major,"2"))
-  pickmajor3 <- str_detect(courseStructure$`應修系級` , paste0(major,"3"))
-  pickmajor4 <- str_detect(courseStructure$`應修系級` , paste0(major,"4"))
+  if(!exists("courseStructure")){
+    jsonlite::fromJSON("https://www.dropbox.com/s/7myzzdnoor21hye/courseStructure2.json?dl=1") -> courseStructure
+    SOAR::Store(courseStructure)
+  }
   
-  pick1 <- pickyear1 & pickmajor1
-  pick2 <- pickyear2 & pickmajor2
-  pick3 <- pickyear3 & pickmajor3
-  pick4 <- pickyear4 & pickmajor4
+  library(dplyr)
+  library(stringr)
+  library(purrr)  
+  paste0(major,1:4) -> majorAllGrades
+  map(majorAllGrades,
+      ~(
+        courseStructure$學年 == entranceYear &
+        str_detect(courseStructure$應修系級, .x))
+      ) -> pick_courses
   
-  a31 <- list(
-    year1=unique(courseStructure$`科目名稱`[pick1]),
-  year2=unique(courseStructure$`科目名稱`[pick2]),
-  year3=unique(courseStructure$`科目名稱`[pick3]),
-  year4=unique(courseStructure$`科目名稱`[pick4])
-  )
-  return(a31)
+  map(pick_courses,  
+      ~unique(courseStructure$科目名稱[.x])) -> courseNamesAllGrades
+  names(courseNamesAllGrades) <- paste("year", 1:4, sep="")
+  
+   return(courseNamesAllGrades)
 }
+
+entranceYear <- "103"
+major <- "經濟系"
+get_courses(entranceYear, major)
 
 # get_courses
 ```
@@ -226,7 +248,7 @@ List of 4
 
 ### 3.3 map map
 
-上一題每個系透過map可以一口氣將不同入學年一一計算完，但最後還是手動針對每個系copy/paste數次。我們可以將針對一個系去算不同入學年結果的程序訂義成一個函數get_coursesAllYears(entranceYears, major):
+上一題每個系透過map可以一口氣將不同入學年一一計算完，但最後還是手動針對每個系copy/paste數次。我們可以將針對一個系去算不同入學年結果的程序定義成一個函數get_coursesAllYears(entranceYears, major):
 
 Arguments:
 
@@ -272,14 +294,27 @@ majors %>%
   * 「year2, year3, year4」如year1, 分別是100-103學年入學「二、三、四」年級的科目種類「數目」，即該年級可供學生選的不同科目名稱有幾個。
   
 ```{r ans34}
-list_econCourseCounts <-list(
-entranceYear=100:103,
-year1= map(get_coursesAllYears(entranceYear,"經濟系"),~.x[[1]]),
-year2= map(get_coursesAllYears(entranceYear,"經濟系"),~.x[[2]]),
-year3= map(get_coursesAllYears(entranceYear,"經濟系"),~.x[[3]]),
-year4= map(get_coursesAllYears(entranceYear,"經濟系"),~.x[[4]])
+list_entranceYears <- 100:103
+map(list_entranceYears,
+    get_courses, major) -> list_coursesAllEntranceYears
 
-)
+list_coursesAllEntranceYears[[1]] %>% map(~length(.x)) 
 
- list_econCourseCounts
+map(list_coursesAllEntranceYears, ~.x  %>% map(~length(.x)) ) -> list_coursesCount
+
+list_coursesCount %>% map( ~.x$year1) %>% unlist -> year1
+
+get_numberOfYear <- function(i){
+  list_coursesCount %>% map( ~.x[[i]]) %>% unlist -> year1
+  return(year1)
+}
+
+map(1:4, get_numberOfYear) -> list_coursesCountAllYears
+names(list_coursesCountAllYears) <- paste0("year", 1:4, sep="")
+
+list(
+  entranceYear=100:103
+) %>% append(list_coursesCountAllYears) -> list_econCourseCounts
+
+# list_econCourseCounts
 ```

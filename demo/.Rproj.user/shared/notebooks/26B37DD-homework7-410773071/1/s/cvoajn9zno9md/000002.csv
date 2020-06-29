@@ -1,0 +1,13 @@
+"0","surface_cube <- function(a,b,c){"
+"0","  abc <- a*b*2+a*c*2+b*c*2"
+"0","  return(abc)"
+"0","}"
+"0"," surface_cube"
+"1","function(a,b,c){
+"
+"1","  abc <- a*b*2+a*c*2+b*c*2
+"
+"1","  return(abc)
+"
+"1","}
+"

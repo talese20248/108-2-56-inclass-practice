@@ -1,0 +1,17 @@
+"0","odd_or_even <- function(id){"
+"0","  a22 <- str_extract(id,""[0-9]$"")"
+"0","  as.integer(a22) %% 2 -> aa22"
+"0","  return(aa22)"
+"0","}"
+"0",""
+"0"," odd_or_even"
+"1","function(id){
+"
+"1","  a22 <- str_extract(id,""[0-9]$"")
+"
+"1","  as.integer(a22) %% 2 -> aa22
+"
+"1","  return(aa22)
+"
+"1","}
+"

@@ -1,0 +1,5 @@
+"0","Mask$身分證字號[[1]] %>%"
+"0","  str_sub(-1) %>%"
+"0","  as.integer() %% 2 -> `1st_odd_or_even`"
+"0",""
+"0","# `1st_odd_or_even`"
